@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="0002_create_user_training_info_table" author="Kostikyan">
+        <preConditions onFail="MARK_RAN" onError="HALT">
+            <not>
+                <tableExists tableName="user_training_info"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="user_training_info">
+            <column name="id" type="INT(11)" autoIncrement="true">
+                <constraints
+                    primaryKey="true"
+                    nullable="false"
+                />
+            </column>
+
+            <column name="fitness_goal" type="VARCHAR(255)"/>
+            <column name="workout_frequency" type="INT(11)"/>
+            <column name="target_weight" type="DOUBLE(11)"/>
+            <column name="target_body_fat_percentage" type="DOUBLE(11)"/>
+            <column name="creation_timestamp" type="TIMESTAMP"/>
+
+            <column name="user_id" type="INT(11)">
+                <constraints
+                        foreignKeyName="fk__user_training_info_user"
+                        referencedTableName="user"
+                        referencedColumnNames="id"
+                />
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

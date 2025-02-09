@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="0005_create_user_physical_info_table" author="Kostikyan">
+        <preConditions onFail="MARK_RAN" onError="HALT">
+            <not>
+                <tableExists tableName="user_physical_info"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="user_physical_info">
+            <column name="id" type="INT(11)" autoIncrement="true">
+                <constraints
+                        primaryKey="true"
+                        nullable="false"
+                />
+            </column>
+
+            <column name="height" type="DOUBLE"/>
+            <column name="weight" type="DOUBLE"/>
+            <column name="body_fat_percentage" type="DOUBLE"/>
+            <column name="bmi" type="DOUBLE"/>
+            <column name="muscle_mass" type="DOUBLE"/>
+            <column name="creation_timestamp" type="TIMESTAMP"/>
+
+            <column name="user_id" type="INT(11)">
+                <constraints
+                        foreignKeyName="fk__user_physical_info_user"
+                        referencedTableName="user"
+                        referencedColumnNames="id"
+                />
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

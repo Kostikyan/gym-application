@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="0003_add_fields_to_user_table" author="Kostikyan">
+        <preConditions onFail="MARK_RAN" onError="HALT">
+            <tableExists tableName="user"/>
+        </preConditions>
+
+        <addColumn tableName="user">
+            <column name="gender" type="VARCHAR(255)"/>
+            <column name="date_of_birth" type="DATE"/>
+            <column name="creation_timestamp" type="TIMESTAMP"/>
+            <column name="update_timestamp" type="TIMESTAMP"/>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>
