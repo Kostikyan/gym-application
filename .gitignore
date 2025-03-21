@@ -3,3 +3,4 @@
 target
 .gitignore
 README.Docker.md
+/pgdata/
