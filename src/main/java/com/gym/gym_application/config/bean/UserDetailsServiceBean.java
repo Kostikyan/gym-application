@@ -12,15 +12,15 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 @RequiredArgsConstructor
 public class UserDetailsServiceBean {
 
-	private final UserRepository userRepository;
+    private final UserRepository userRepository;
 
-	@Bean
-	public UserDetailsService userDetailsService() {
-		return username -> {
-			var user = userRepository.findByUsername(username).orElseThrow(() ->
-					new NotFoundException("Cannot find user with username %s".formatted(username)));
-			return new CurrentUser(user);
-		};
-	}
+    @Bean
+    public UserDetailsService userDetailsService() {
+        return username -> {
+            var user = userRepository.findByUsername(username).orElseThrow(() ->
+                    new NotFoundException("Cannot find user with username %s".formatted(username)));
+            return new CurrentUser(user);
+        };
+    }
 
 }

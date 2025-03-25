@@ -36,37 +36,37 @@ import java.util.List;
 @Table(name = "user", schema = "public")
 public class User {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-	private String fullName;
-	private String username;
-	private String password;
+    private String fullName;
+    private String username;
+    private String password;
 
-	@Enumerated(EnumType.STRING)
-	private Role role;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
-	@Enumerated(EnumType.STRING)
-	private Gender gender;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
 
-	private Date dateOfBirth;
+    private Date dateOfBirth;
 
-	@CreationTimestamp
-	private LocalDateTime creationTimestamp;
+    @CreationTimestamp
+    private LocalDateTime creationTimestamp;
 
-	@UpdateTimestamp
-	private LocalDateTime updateTimestamp;
+    @UpdateTimestamp
+    private LocalDateTime updateTimestamp;
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL,
-			fetch = FetchType.LAZY, orphanRemoval = true)
-	private List<UserTrainingInfo> userTrainingInfos = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<UserTrainingInfo> userTrainingInfos = new ArrayList<>();
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL,
-			fetch = FetchType.LAZY, orphanRemoval = true)
-	private List<UserNutritionInfo> userNutritionInfos = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<UserNutritionInfo> userNutritionInfos = new ArrayList<>();
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL,
-			fetch = FetchType.LAZY, orphanRemoval = true)
-	private List<UserPhysicalInfo> userPhysicalInfos = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<UserPhysicalInfo> userPhysicalInfos = new ArrayList<>();
 }

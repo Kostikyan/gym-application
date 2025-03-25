@@ -16,33 +16,33 @@ import static com.gym.gym_application.exception.ExceptionMessage.exceptionMessag
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-	@ResponseStatus(HttpStatus.NOT_FOUND)
-	@ExceptionHandler({
-			NotFoundException.class
-	})
-	public ResponseEntity<Object> handleNotFoundExceptions(RuntimeException e, HttpServletRequest request) {
-		HttpStatus httpStatus = HttpStatus.NOT_FOUND;
-		ExceptionMessage exceptionMessage = exceptionMessage(e, httpStatus.value(), request);
-		return new ResponseEntity<>(exceptionMessage, httpStatus);
-	}
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler({
+            NotFoundException.class
+    })
+    public ResponseEntity<Object> handleNotFoundExceptions(RuntimeException e, HttpServletRequest request) {
+        HttpStatus httpStatus = HttpStatus.NOT_FOUND;
+        ExceptionMessage exceptionMessage = exceptionMessage(e, httpStatus.value(), request);
+        return new ResponseEntity<>(exceptionMessage, httpStatus);
+    }
 
-	@ResponseStatus(HttpStatus.UNAUTHORIZED)
-	@ExceptionHandler({
-			UnauthorizedUserException.class
-	})
-	public ResponseEntity<Object> handleUnauthorizedExceptions(RuntimeException e, HttpServletRequest request) {
-		HttpStatus httpStatus = HttpStatus.UNAUTHORIZED;
-		ExceptionMessage exceptionMessage = exceptionMessage(e, httpStatus.value(), request);
-		return new ResponseEntity<>(exceptionMessage, httpStatus);
-	}
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ExceptionHandler({
+            UnauthorizedUserException.class
+    })
+    public ResponseEntity<Object> handleUnauthorizedExceptions(RuntimeException e, HttpServletRequest request) {
+        HttpStatus httpStatus = HttpStatus.UNAUTHORIZED;
+        ExceptionMessage exceptionMessage = exceptionMessage(e, httpStatus.value(), request);
+        return new ResponseEntity<>(exceptionMessage, httpStatus);
+    }
 
-	@ResponseStatus(HttpStatus.CONFLICT)
-	@ExceptionHandler({
-			ConflictException.class
-	})
-	public ResponseEntity<Object> handleConflictExceptions(RuntimeException e, HttpServletRequest request) {
-		HttpStatus httpStatus = HttpStatus.CONFLICT;
-		ExceptionMessage exceptionMessage = exceptionMessage(e, httpStatus.value(), request);
-		return new ResponseEntity<>(exceptionMessage, httpStatus);
-	}
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler({
+            ConflictException.class
+    })
+    public ResponseEntity<Object> handleConflictExceptions(RuntimeException e, HttpServletRequest request) {
+        HttpStatus httpStatus = HttpStatus.CONFLICT;
+        ExceptionMessage exceptionMessage = exceptionMessage(e, httpStatus.value(), request);
+        return new ResponseEntity<>(exceptionMessage, httpStatus);
+    }
 }

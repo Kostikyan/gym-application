@@ -26,18 +26,18 @@ import java.time.LocalDateTime;
 @Table(name = "user_nutrition_info", schema = "public")
 public class UserNutritionInfo {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-	private Double dailyCaloricIntake;
-	private Double proteinIntake;
-	private String allergies;
-	private Double waterIntakeGoal;
+    private Double dailyCaloricIntake;
+    private Double proteinIntake;
+    private String allergies;
+    private Double waterIntakeGoal;
 
-	@CreationTimestamp
-	private LocalDateTime creationTimestamp;
+    @CreationTimestamp
+    private LocalDateTime creationTimestamp;
 
-	@ManyToOne
-	private User user;
+    @ManyToOne
+    private User user;
 }

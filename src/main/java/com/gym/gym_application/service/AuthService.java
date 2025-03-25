@@ -6,7 +6,7 @@ import com.gym.gym_application.dto.UserRegisterRequest;
 
 public interface AuthService {
 
-	UserLoginResponse login(UserLoginRequest request);
+    UserLoginResponse login(UserLoginRequest request);
 
-	void register(UserRegisterRequest request);
+    void register(UserRegisterRequest request);
 }

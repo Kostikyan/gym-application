@@ -9,9 +9,9 @@ import org.springframework.security.config.annotation.authentication.configurati
 @Configuration
 public class AuthenticationManagerBean {
 
-	@Bean
-	@SneakyThrows
-	public AuthenticationManager authenticationManager(AuthenticationConfiguration config) {
-		return config.getAuthenticationManager();
-	}
+    @Bean
+    @SneakyThrows
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) {
+        return config.getAuthenticationManager();
+    }
 }
