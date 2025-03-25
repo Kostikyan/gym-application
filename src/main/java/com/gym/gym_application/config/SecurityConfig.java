@@ -47,13 +47,16 @@ public class SecurityConfig extends SecurityConstants {
                                 }
                         )
                 )
-                .authorizeHttpRequests(auth -> auth.requestMatchers(PERMITTED_URIS)
-                        .permitAll()
-                        .anyRequest().authenticated())
-                .exceptionHandling(exceptionHandler
-                        -> exceptionHandler.authenticationEntryPoint(authenticationEntryPoint))
-                .sessionManagement(sess
-                        -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authorizeHttpRequests(auth ->
+                        auth.requestMatchers(PERMITTED_URIS).permitAll()
+                        .anyRequest().authenticated()
+                )
+                .exceptionHandling(exceptionHandler ->
+                        exceptionHandler.authenticationEntryPoint(authenticationEntryPoint)
+                )
+                .sessionManagement(sess ->
+                        sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                )
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .cors(SecurityConfig::getCorsConfigurer);
