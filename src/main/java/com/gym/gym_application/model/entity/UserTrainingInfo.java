@@ -4,7 +4,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -27,18 +26,18 @@ import java.time.LocalDateTime;
 @Table(name = "user_training_info", schema = "public")
 public class UserTrainingInfo {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-	private String fitnessGoal;
-	private Integer workoutFrequency;
-	private Double targetWeight;
-	private Double targetBodyFatPercentage;
+    private String fitnessGoal;
+    private Integer workoutFrequency;
+    private Double targetWeight;
+    private Double targetBodyFatPercentage;
 
-	@CreationTimestamp
-	private LocalDateTime creationTimestamp;
+    @CreationTimestamp
+    private LocalDateTime creationTimestamp;
 
-	@ManyToOne
-	private User user;
+    @ManyToOne
+    private User user;
 }

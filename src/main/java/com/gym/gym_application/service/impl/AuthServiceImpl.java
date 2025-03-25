@@ -17,47 +17,48 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-@Service
 @Slf4j
+@Service
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
 
-	private final UserRepository userRepository;
-	private final UserMapper userMapper;
-	private final PasswordEncoder passwordEncoder;
-	private final AuthenticationManager authenticationManager;
-	private final JwtTokenUtil jwtTokenUtil;
+    private final UserRepository userRepository;
+    private final UserMapper userMapper;
+    private final PasswordEncoder passwordEncoder;
+    private final AuthenticationManager authenticationManager;
+    private final JwtTokenUtil jwtTokenUtil;
 
-	@Override
-	public UserLoginResponse login(UserLoginRequest request) {
-		AuthServiceUtil.validateUserExisting(
-				userRepository.existsByUsername(request.username())
-		);
+    @Override
+    public UserLoginResponse login(UserLoginRequest request) {
+        AuthServiceUtil.validateUserExisting(
+                userRepository.existsByUsername(request.username())
+        );
 
-		var user = userRepository.findByUsername(request.username())
-				.orElseThrow(NotFoundException::new);
+        var user = userRepository.findByUsername(request.username())
+                .orElseThrow(NotFoundException::new);
 
-		var matches = passwordEncoder.matches(request.password(), user.getPassword());
-		AuthServiceUtil.validatePassword(matches);
+        var matches = passwordEncoder.matches(request.password(), user.getPassword());
+        AuthServiceUtil.validatePassword(matches);
 
-		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-				request.username(),
-				request.password()
-		));
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+                request.username(),
+                request.password()
+        ));
 
-		var token = jwtTokenUtil.generateToken(new CurrentUser(user));
-		return new UserLoginResponse(user.getId(), user.getUsername(), user.getFullName(), user.getRole(), token);
-	}
+        var token = jwtTokenUtil.generateToken(new CurrentUser(user));
+        return new UserLoginResponse(user.getId(), user.getUsername(), user.getFullName(), user.getRole(), token);
+    }
 
-	@Override
-	public void register(UserRegisterRequest request) {
-		AuthServiceUtil.validateUserNotExisting(
-				userRepository.existsByUsername(request.getUsername())
-		);
+    @Override
+    public void register(UserRegisterRequest request) {
+        AuthServiceUtil.validateUserNotExisting(
+                userRepository.existsByUsername(request.username())
+        );
 
-		request.setPassword(passwordEncoder.encode(request.getPassword()));
+        var encodedPassword = passwordEncoder.encode(request.password());
+        var updatedRequest = new UserRegisterRequest(request.fullName(), request.username(), encodedPassword);
 
-		var user = userMapper.mapFromRegisterDto(request);
-		userRepository.save(user);
-	}
+        var user = userMapper.mapFromRegisterDto(updatedRequest);
+        userRepository.save(user);
+    }
 }

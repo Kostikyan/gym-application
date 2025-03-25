@@ -25,19 +25,19 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "user_physical_info", schema = "public")
 public class UserPhysicalInfo {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-	private Double height;
-	private Double weight;
-	private Double bodyFatPercentage;
-	private Double BMI;
-	private Double muscleMass;
+    private Double height;
+    private Double weight;
+    private Double bodyFatPercentage;
+    private Double bmi;
+    private Double muscleMass;
 
-	@CreationTimestamp
-	private LocalDateTime creationTimestamp;
+    @CreationTimestamp
+    private LocalDateTime creationTimestamp;
 
-	@ManyToOne
-	private User user;
+    @ManyToOne
+    private User user;
 }
