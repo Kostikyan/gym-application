@@ -18,7 +18,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler({
-            NotFoundException.class
+        NotFoundException.class
     })
     public ResponseEntity<Object> handleNotFoundExceptions(RuntimeException e, HttpServletRequest request) {
         HttpStatus httpStatus = HttpStatus.NOT_FOUND;
@@ -28,7 +28,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ExceptionHandler({
-            UnauthorizedUserException.class
+        UnauthorizedUserException.class
     })
     public ResponseEntity<Object> handleUnauthorizedExceptions(RuntimeException e, HttpServletRequest request) {
         HttpStatus httpStatus = HttpStatus.UNAUTHORIZED;
@@ -38,7 +38,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler({
-            ConflictException.class
+        ConflictException.class
     })
     public ResponseEntity<Object> handleConflictExceptions(RuntimeException e, HttpServletRequest request) {
         HttpStatus httpStatus = HttpStatus.CONFLICT;
